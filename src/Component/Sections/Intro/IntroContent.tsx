@@ -5,19 +5,23 @@ const IntroContent = () => {
   return (
     <div
       className="
-      w-[732px]
-      h-[220px]
+      w-[calc(100%-32px)]
+      max-w-[732px]
+      h-auto
+      md:h-[220px]
       mx-auto
-      mt-[158px]
+      mt-[100px]
+      sm:mt-[120px]
+      md:mt-[158px]
       flex
       flex-col
       items-center
-      gap-6
+      gap-[24px]
       "
     >
       <div
         className="
-        w-[732px]
+        w-full
         flex
         flex-col
         items-center
@@ -26,17 +30,25 @@ const IntroContent = () => {
       >
         <h1
           className="
-          w-[732px]
-          h-[72px]
-          whitespace-nowrap
+          w-full
+          h-auto
+          md:h-[72px]
+          whitespace-normal
+          md:whitespace-nowrap
           flex
           items-center
           justify-center
           text-center
           font-extrabold
-          text-[40px]
-          leading-[72px]
-          tracking-[-2.4px]
+          text-[28px]
+          sm:text-[32px]
+          md:text-[40px]
+          leading-[48px]
+          sm:leading-[56px]
+          md:leading-[72px]
+          tracking-[-1.2px]
+          sm:tracking-[-1.8px]
+          md:tracking-[-2.4px]
           text-[#1A1A1A]
           "
         >
@@ -45,15 +57,19 @@ const IntroContent = () => {
 
         <p
           className="
-          w-[732px]
-          h-[64px]
+          w-full
+          h-auto
+          md:h-[64px]
           flex
           items-center
           justify-center
           text-center
           font-semibold
-          text-[14px]
-          leading-[32px]
+          text-[13px]
+          sm:text-[14px]
+          leading-[28px]
+          sm:leading-[30px]
+          md:leading-[32px]
           text-[#4C4C4D]
           "
         >
