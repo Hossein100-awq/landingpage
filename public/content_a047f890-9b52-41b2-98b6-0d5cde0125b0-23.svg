@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gilmar2" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#02ADF7"/>
+      <stop offset="1" stop-color="#26E05A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="16" fill="url(#gilmar2)"/>
+
+  <path d="M10 48 L26 26 L38 42 L46 32 L54 48 Z" fill="#FFFFFF" opacity="0.95"/>
+  <circle cx="45" cy="18" r="6" fill="#FFFFFF"/>
+</svg>
