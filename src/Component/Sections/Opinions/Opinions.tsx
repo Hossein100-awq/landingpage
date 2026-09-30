@@ -6,8 +6,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const FONT_FAMILY = '"Abar Mid FaNum", sans-serif';
+
 const PRIMARY_GRADIENT =
   "linear-gradient(229.52deg, #02ADF7 -18.98%, #26E05A 121.29%)";
+
 const DOT_COLOR = "rgba(105, 118, 135, 0.3)";
 const DRAG_THRESHOLD = 80;
 const QUOTE_MARK_OFFSETS = [0, 14.93];
@@ -81,10 +83,12 @@ const AVATAR_SLOTS: AvatarSlot[] = [
 
 const getDisplayAvatars = (activeAvatarIndex: number): string[] => {
   const avatars = [...AVATAR_SRCS];
+
   [avatars[0], avatars[activeAvatarIndex]] = [
     avatars[activeAvatarIndex],
     avatars[0],
   ];
+
   return avatars;
 };
 
@@ -93,27 +97,41 @@ interface UseDragSlideOptions {
   onPrev: () => void;
 }
 
-const useDragSlide = ({ onNext, onPrev }: UseDragSlideOptions) => {
+const useDragSlide = ({
+  onNext,
+  onPrev,
+}: UseDragSlideOptions) => {
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const startXRef = useRef(0);
 
-  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handlePointerDown = (
+    event: ReactPointerEvent<HTMLDivElement>
+  ) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
+
     event.currentTarget.setPointerCapture(event.pointerId);
     startXRef.current = event.clientX;
     setIsDragging(true);
   };
 
-  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handlePointerMove = (
+    event: ReactPointerEvent<HTMLDivElement>
+  ) => {
     if (!isDragging) return;
+
     setDragX(event.clientX - startXRef.current);
   };
 
   const handlePointerEnd = () => {
     if (!isDragging) return;
-    if (dragX >= DRAG_THRESHOLD) onNext();
-    else if (dragX <= -DRAG_THRESHOLD) onPrev();
+
+    if (dragX >= DRAG_THRESHOLD) {
+      onNext();
+    } else if (dragX <= -DRAG_THRESHOLD) {
+      onPrev();
+    }
+
     setIsDragging(false);
     setDragX(0);
   };
@@ -148,7 +166,11 @@ const QuoteIcon = () => (
         alt=""
         width={13.07}
         height={20.72}
-        style={{ position: "absolute", top: "3.64px", left: `${left}px` }}
+        style={{
+          position: "absolute",
+          top: "3.64px",
+          left: `${left}px`,
+        }}
       />
     ))}
   </Box>
@@ -159,8 +181,11 @@ const GuestReviews = () => {
 
   const goNext = () =>
     setActiveIndex((prev) => (prev + 1) % REVIEWS.length);
+
   const goPrev = () =>
-    setActiveIndex((prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length);
+    setActiveIndex(
+      (prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length
+    );
 
   const { dragX, isDragging, handlers } = useDragSlide({
     onNext: goNext,
@@ -178,18 +203,34 @@ const GuestReviews = () => {
         position: "relative",
         width: "100%",
         maxWidth: "1440px",
-        height: "698px",
+        height: {
+          xs: "620px",
+          sm: "698px",
+        },
         mx: "auto",
         backgroundColor: "#F5F8FA",
+        overflow: "hidden",
       }}
     >
       <Box
         sx={{
           position: "absolute",
-          left: "calc(50% - 584.5px)",
-          top: "94px",
-          width: "1169px",
-          height: "604px",
+          left: {
+            xs: "0",
+            sm: "calc(50% - 584.5px)",
+          },
+          top: {
+            xs: "70px",
+            sm: "94px",
+          },
+          width: {
+            xs: "100%",
+            sm: "1169px",
+          },
+          height: {
+            xs: "500px",
+            sm: "604px",
+          },
         }}
       >
         <Box
@@ -207,12 +248,15 @@ const GuestReviews = () => {
             alt=""
             fill
             sizes="1200px"
-            style={{ objectFit: "fill" }}
+            style={{
+              objectFit: "fill",
+            }}
           />
         </Box>
 
         {displayAvatars.map((src, slotIndex) => {
           const { size, left, top } = AVATAR_SLOTS[slotIndex];
+
           return (
             <Image
               key={src}
@@ -220,7 +264,13 @@ const GuestReviews = () => {
               alt=""
               width={size}
               height={size}
-              style={{ position: "absolute", left, top }}
+              style={{
+                position: "absolute",
+                left,
+                top,
+                maxWidth: "100%",
+                height: "auto",
+              }}
             />
           );
         })}
@@ -228,13 +278,26 @@ const GuestReviews = () => {
         <Box
           sx={{
             position: "absolute",
-            left: "calc(50% - 250px)",
-            top: "247px",
-            width: "500px",
+            left: {
+              xs: "16px",
+              sm: "calc(50% - 250px)",
+            },
+            top: {
+              xs: "190px",
+              sm: "247px",
+            },
+            width: {
+              xs: "calc(100% - 32px)",
+              sm: "500px",
+            },
+            maxWidth: "500px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "24px",
+            gap: {
+              xs: "14px",
+              sm: "24px",
+            },
           }}
         >
           <Box
@@ -242,13 +305,22 @@ const GuestReviews = () => {
             sx={{
               boxSizing: "border-box",
               width: "100%",
-              height: "264px",
-              padding: "23px",
+              minHeight: {
+                xs: "230px",
+                sm: "264px",
+              },
+              padding: {
+                xs: "18px 14px",
+                sm: "23px",
+              },
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              gap: "16px",
+              gap: {
+                xs: "10px",
+                sm: "16px",
+              },
               backgroundColor: "#FCFDFD",
               border: "1px solid #EEF3F7",
               borderRadius: "16px",
@@ -258,7 +330,9 @@ const GuestReviews = () => {
               userSelect: "none",
               touchAction: "pan-y",
               transform: `translateX(${dragX}px)`,
-              transition: isDragging ? "none" : "transform 0.3s ease",
+              transition: isDragging
+                ? "none"
+                : "transform 0.3s ease",
             }}
           >
             <QuoteIcon />
@@ -269,25 +343,46 @@ const GuestReviews = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 width: "100%",
-                minHeight: "96px",
+                minHeight: {
+                  xs: "auto",
+                  sm: "96px",
+                },
                 fontFamily: FONT_FAMILY,
                 fontWeight: 600,
-                fontSize: "14px",
-                lineHeight: "32px",
+                fontSize: {
+                  xs: "12px",
+                  sm: "14px",
+                },
+                lineHeight: {
+                  xs: "25px",
+                  sm: "32px",
+                },
                 textAlign: "center",
                 color: "#4C4C4D",
+                overflowWrap: "break-word",
+                wordBreak: "normal",
               }}
             >
               {activeReview.text}
             </Typography>
 
-            <Box sx={{ width: "100%" }}>
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
               <Typography
                 sx={{
                   fontFamily: FONT_FAMILY,
                   fontWeight: 800,
-                  fontSize: "14px",
-                  lineHeight: "32px",
+                  fontSize: {
+                    xs: "12px",
+                    sm: "14px",
+                  },
+                  lineHeight: {
+                    xs: "28px",
+                    sm: "32px",
+                  },
                   textAlign: "center",
                   color: "#1A1A1A",
                 }}
@@ -300,8 +395,14 @@ const GuestReviews = () => {
                   mt: "-4px",
                   fontFamily: FONT_FAMILY,
                   fontWeight: 600,
-                  fontSize: "14px",
-                  lineHeight: "32px",
+                  fontSize: {
+                    xs: "12px",
+                    sm: "14px",
+                  },
+                  lineHeight: {
+                    xs: "28px",
+                    sm: "32px",
+                  },
                   textAlign: "center",
                   color: "#4C4C4D",
                 }}
@@ -313,7 +414,11 @@ const GuestReviews = () => {
 
           <Box
             aria-hidden="true"
-            sx={{ display: "flex", alignItems: "center", gap: "5px" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
           >
             {REVIEWS.map((review, index) => (
               <Box
@@ -322,7 +427,10 @@ const GuestReviews = () => {
                   width: "6px",
                   height: "6px",
                   borderRadius: "50%",
-                  background: index === activeIndex ? PRIMARY_GRADIENT : DOT_COLOR,
+                  background:
+                    index === activeIndex
+                      ? PRIMARY_GRADIENT
+                      : DOT_COLOR,
                 }}
               />
             ))}
@@ -333,25 +441,52 @@ const GuestReviews = () => {
       <Box
         sx={{
           position: "absolute",
-          top: 0,
-          left: "calc(50% - 366px)",
-          width: "732px",
+          top: {
+            xs: "20px",
+            sm: "0",
+          },
+          left: {
+            xs: "16px",
+            sm: "calc(50% - 366px)",
+          },
+          width: {
+            xs: "calc(100% - 32px)",
+            sm: "732px",
+          },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "20px",
+          gap: {
+            xs: "12px",
+            sm: "20px",
+          },
         }}
       >
-        <Image src="/Icon Container (1).svg" alt="" width={84} height={52} />
+        <Image
+          src="/Icon Container (1).svg"
+          alt=""
+          width={84}
+          height={52}
+        />
 
-        <Box>
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
           <Typography
             component="h2"
             sx={{
               fontFamily: FONT_FAMILY,
               fontWeight: 800,
-              fontSize: "32px",
-              lineHeight: "58px",
+              fontSize: {
+                xs: "24px",
+                sm: "32px",
+              },
+              lineHeight: {
+                xs: "42px",
+                sm: "58px",
+              },
               letterSpacing: "-1.4px",
               textAlign: "center",
               color: "#1A1A1A",
@@ -364,8 +499,14 @@ const GuestReviews = () => {
             sx={{
               fontFamily: FONT_FAMILY,
               fontWeight: 600,
-              fontSize: "14px",
-              lineHeight: "32px",
+              fontSize: {
+                xs: "12px",
+                sm: "14px",
+              },
+              lineHeight: {
+                xs: "26px",
+                sm: "32px",
+              },
               textAlign: "center",
               color: "#4C4C4D",
             }}

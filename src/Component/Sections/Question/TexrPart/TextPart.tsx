@@ -9,7 +9,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const FONT_FAMILY = '"Abar Mid FaNum", sans-serif';
+
 const CLOSED_SHADOW = "0px 0px 0px 6px #FFFFFF";
+
 const OPEN_SHADOW =
   "0px 24px 48px rgba(0, 46, 37, 0.12), 0px 0px 0px 6px #FFFFFF";
 
@@ -24,148 +26,183 @@ const FAQ_ITEMS: FaqItem[] = [
     id: "cancellation",
     question: "امکان کنسلی یا تغییر تاریخ رزرو وجود دارد!",
     answer:
-      "در گیلمار امکان لغو یا تغییر تاریخ رزرو فراهم است، اما این موضوع بر اساس زمان اعلام درخواست و قوانین اقامتگاه انجام می‌شود. لطفاً برای بررسی دقیق شرایط و هماهنگی بهتر، قبل از تاریخ اقامت با پشتیبانی در ارتباط باشید.",
+      "در گیلمار امکان کنسلی یا تغییر تاریخ رزرو طبق قوانین هر پکیج و شرایط رزرو وجود دارد. برای اطلاع از جزئیات شرایط کنسلی، هنگام رزرو قوانین مربوط به همان اقامتگاه را بررسی کنید.",
   },
   {
     id: "check-in",
     question: "ساعت ورود و خروج از اقامتگاه چه زمانی است؟",
     answer:
-      "ساعت ورود از ۱۴ و ساعت خروج تا ۱۲ ظهر است. اگر قصد دارید زودتر وارد شوید یا دیرتر خارج شوید، پیش از سفر موضوع را با پشتیبانی هماهنگ کنید تا در صورت خالی بودن اقامتگاه، امکان آن فراهم شود.",
+      "ساعت ورود از ۱۴ و ساعت خروج تا ۱۲ ظهر است. در صورت هماهنگی قبلی و وجود ظرفیت، امکان تغییر این زمان‌ها ممکن است.",
   },
   {
     id: "breakfast",
     question: "آیا صبحانه در قیمت اقامت شامل می‌شود؟",
     answer:
-      "بسته به پکیج انتخابی، صبحانه‌ی محلی می‌تواند جزو خدمات اقامت شما باشد. جزئیات هر پکیج در صفحه‌ی همان پکیج آمده است و اگر سوالی داشتید، می‌توانید پیش از رزرو از پشتیبانی بپرسید.",
+      "بسته به پکیج انتخابی، صبحانه ممکن است در هزینه اقامت لحاظ شده باشد. جزئیات مربوط به هر پکیج هنگام رزرو نمایش داده می‌شود.",
   },
   {
     id: "pets",
     question: "آیا امکان همراه داشتن حیوان خانگی وجود دارد؟",
     answer:
-      "برای حفظ آرامش همه‌ی مهمانان، همراه داشتن حیوان خانگی نیازمند هماهنگی قبلی است. لطفاً پیش از ثبت رزرو با پشتیبانی تماس بگیرید تا شرایط و امکانات لازم را با شما بررسی کنیم.",
+      "برای حفظ آرامش و راحتی تمام مهمانان، قوانین مربوط به همراه داشتن حیوان خانگی برای هر اقامتگاه متفاوت است. پیش از رزرو شرایط اقامتگاه موردنظر را بررسی کنید.",
   },
   {
     id: "route",
     question: "برای رسیدن به گیلمار چه مسیری را پیشنهاد می‌کنید؟",
     answer:
-      "راهنمای دقیق مسیر پس از ثبت رزرو برای شما ارسال می‌شود. برای رسیدن راحت‌تر پیشنهاد می‌کنیم مسیر را از قبل روی نقشه بررسی کنید و اگر در راه به کمک نیاز داشتید، با پشتیبانی در تماس باشید.",
+      "راهنمای دقیق مسیر و اطلاعات دسترسی به گیلمار در اختیار مهمانان قرار می‌گیرد تا بتوانند به‌راحتی مسیر مناسب خود را انتخاب کنند.",
   },
 ];
 
-interface ToggleIconProps {
-  isOpen: boolean;
-}
-
-const ToggleIcon = ({ isOpen }: ToggleIconProps) => (
-  <Box sx={{ position: "relative", flexShrink: 0, width: "30px", height: "30px" }}>
-    <Image src="/Ellipse 11800.svg" alt="" width={30} height={30} />
-
+const ToggleIcon = ({ expanded }: { expanded: boolean }) => {
+  return (
     <Box
       sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        width: "10px",
-        height: "1.5px",
-        borderRadius: "2px",
-        backgroundColor: "#FFFFFF",
-        transform: "translate(-50%, -50%)",
+        position: "relative",
+        width: { xs: "26px", sm: "30px" },
+        height: { xs: "26px", sm: "30px" },
+        flexShrink: 0,
       }}
-    />
-
-    <Box
-      sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        width: "1.5px",
-        height: "10px",
-        borderRadius: "2px",
-        backgroundColor: "#FFFFFF",
-        transform: `translate(-50%, -50%) scaleY(${isOpen ? 0 : 1})`,
-        transition: "transform 0.3s ease",
-      }}
-    />
-  </Box>
-);
+    >
+      <Image
+        src={expanded ? "/Icon Container (5).svg" : "/Icon Container (4).svg"}
+        alt=""
+        fill
+        sizes="30px"
+        style={{ objectFit: "contain" }}
+      />
+    </Box>
+  );
+};
 
 const TextPart = () => {
-  const [expandedId, setExpandedId] = useState<string | null>(FAQ_ITEMS[0].id);
+  const [expanded, setExpanded] = useState<string | false>(false);
+
+  const handleChange =
+    (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
 
   return (
     <Box
       sx={{
         position: "relative",
-        flexShrink: 0,
-        width: "620px",
+        flexShrink: 1,
+        width: "100%",
+        maxWidth: "620px",
+        minWidth: 0,
         display: "flex",
         flexDirection: "column",
-        gap: "32px",
+        gap: { xs: "16px", sm: "24px", md: "32px" },
       }}
     >
-      {FAQ_ITEMS.map(({ id, question, answer }) => {
-        const isOpen = expandedId === id;
+      {FAQ_ITEMS.map((item) => {
+        const isExpanded = expanded === item.id;
 
         return (
           <Accordion
-            key={id}
-            expanded={isOpen}
-            onChange={(_, isExpanded) => setExpandedId(isExpanded ? id : null)}
+            key={item.id}
+            expanded={isExpanded}
+            onChange={handleChange(item.id)}
             disableGutters
             elevation={0}
             sx={{
-              "&&": { borderRadius: isOpen ? "20px" : "32px" },
-              "&::before": { display: "none" },
-              overflow: "hidden",
+              width: "100%",
+              minWidth: 0,
+              margin: "0 !important",
+              borderRadius: { xs: "14px", sm: "18px" },
               backgroundColor: "#FCFDFD",
-              border: "1px solid #EEF3F7",
-              boxShadow: isOpen ? OPEN_SHADOW : CLOSED_SHADOW,
-              transition: "border-radius 0.3s ease, box-shadow 0.3s ease",
+              boxShadow: isExpanded ? OPEN_SHADOW : CLOSED_SHADOW,
+              overflow: "hidden",
+              "&::before": {
+                display: "none",
+              },
             }}
           >
             <AccordionSummary
-              disableRipple
-              expandIcon={<ToggleIcon isOpen={isOpen} />}
+              expandIcon={<ToggleIcon expanded={isExpanded} />}
               sx={{
-                minHeight: "auto",
-                padding: "15px",
-                transition: "padding 0.3s ease",
-                "&.Mui-expanded": {
-                  minHeight: "auto",
-                  padding: "23px 15px 0",
+                minHeight: "unset",
+                width: "100%",
+                minWidth: 0,
+                padding: {
+                  xs: "12px",
+                  sm: "15px",
                 },
-                "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-                  transform: "none",
+                "&.Mui-expanded": {
+                  minHeight: "unset",
+                  padding: {
+                    xs: "16px 12px 0",
+                    sm: "23px 15px 0",
+                  },
+                },
+                "& .MuiAccordionSummary-content": {
+                  margin: 0,
+                  minWidth: 0,
+                  alignItems: "center",
+                },
+                "& .MuiAccordionSummary-content.Mui-expanded": {
+                  margin: 0,
+                },
+                "& .MuiAccordionSummary-expandIconWrapper": {
+                  marginRight: { xs: "8px", sm: "12px" },
+                  marginLeft: 0,
                 },
               }}
             >
               <Typography
-                component="span"
                 sx={{
+                  minWidth: 0,
                   fontFamily: FONT_FAMILY,
-                  fontWeight: 800,
-                  fontSize: "14px",
-                  lineHeight: "32px",
-                  textAlign: "right",
+                  fontWeight: 700,
+                  fontSize: {
+                    xs: "12px",
+                    sm: "14px",
+                  },
+                  lineHeight: {
+                    xs: "26px",
+                    sm: "32px",
+                  },
                   color: "#1A1A1A",
+                  textAlign: "right",
+                  overflowWrap: "break-word",
+                  wordBreak: "break-word",
                 }}
               >
-                {question}
+                {item.question}
               </Typography>
             </AccordionSummary>
 
-            <AccordionDetails sx={{ padding: "16px 15px 23px" }}>
+            <AccordionDetails
+              sx={{
+                width: "100%",
+                minWidth: 0,
+                boxSizing: "border-box",
+                padding: {
+                  xs: "12px",
+                  sm: "16px 15px 23px",
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontFamily: FONT_FAMILY,
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  lineHeight: "32px",
-                  textAlign: "right",
+                  fontWeight: 500,
+                  fontSize: {
+                    xs: "12px",
+                    sm: "14px",
+                  },
+                  lineHeight: {
+                    xs: "26px",
+                    sm: "32px",
+                  },
                   color: "#4C4C4D",
+                  textAlign: "right",
+                  overflowWrap: "break-word",
+                  wordBreak: "break-word",
                 }}
               >
-                {answer}
+                {item.answer}
               </Typography>
             </AccordionDetails>
           </Accordion>

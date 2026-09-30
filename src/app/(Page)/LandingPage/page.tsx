@@ -14,7 +14,7 @@ import AnimatedSection from "./../../../Component/Motion/Motion";
 const Page = () => {
   return (
     <main className="w-full overflow-hidden">
-      <div className="flex w-full flex-col gap-[80px]">
+      <div className="flex w-full flex-col gap-[40px] md:gap-[80px]">
         <IntroSection />
 
         <AnimatedSection>

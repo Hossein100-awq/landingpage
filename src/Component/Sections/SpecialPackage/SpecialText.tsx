@@ -65,19 +65,29 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
     <Box
       sx={{
         position: "relative",
-        flexShrink: 0,
-        width: "620px",
+        flexShrink: 1,
+        width: "100%",
+        maxWidth: "620px",
         display: "flex",
         flexDirection: "column",
-        gap: "24px",
+        gap: {
+          xs: "18px",
+          sm: "24px",
+        },
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "20px",
+          alignItems: {
+            xs: "center",
+            sm: "flex-start",
+          },
+          gap: {
+            xs: "14px",
+            sm: "20px",
+          },
         }}
       >
         <Image
@@ -87,16 +97,31 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
           height={52}
         />
 
-        <Box>
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
           <Typography
             component="h2"
             sx={{
               fontFamily: FONT_FAMILY,
               fontWeight: 800,
-              fontSize: "32px",
-              lineHeight: "58px",
+              fontSize: {
+                xs: "24px",
+                sm: "28px",
+                md: "32px",
+              },
+              lineHeight: {
+                xs: "42px",
+                sm: "50px",
+                md: "58px",
+              },
               letterSpacing: "-1.4px",
-              textAlign: "right",
+              textAlign: {
+                xs: "center",
+                sm: "right",
+              },
               color: "#1A1A1A",
             }}
           >
@@ -105,11 +130,26 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
 
           <Typography
             sx={{
+              mt: {
+                xs: "4px",
+                sm: 0,
+              },
               fontFamily: FONT_FAMILY,
               fontWeight: 600,
-              fontSize: "14px",
-              lineHeight: "32px",
-              textAlign: "right",
+              fontSize: {
+                xs: "12px",
+                sm: "13px",
+                md: "14px",
+              },
+              lineHeight: {
+                xs: "26px",
+                sm: "30px",
+                md: "32px",
+              },
+              textAlign: {
+                xs: "center",
+                sm: "right",
+              },
               color: "#4C4C4D",
             }}
           >
@@ -119,7 +159,13 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
         </Box>
       </Box>
 
-      <Box sx={{ height: 0, borderTop: DASHED_LINE }} />
+      <Box
+        sx={{
+          height: 0,
+          borderTop: DASHED_LINE,
+          width: "100%",
+        }}
+      />
 
       <Box>
         <Typography
@@ -127,8 +173,14 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
           sx={{
             fontFamily: FONT_FAMILY,
             fontWeight: 800,
-            fontSize: "16px",
-            lineHeight: "32px",
+            fontSize: {
+              xs: "14px",
+              sm: "16px",
+            },
+            lineHeight: {
+              xs: "28px",
+              sm: "32px",
+            },
             textAlign: "right",
             color: "#1A1A1A",
           }}
@@ -141,8 +193,14 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
             mt: "2px",
             fontFamily: FONT_FAMILY,
             fontWeight: 600,
-            fontSize: "14px",
-            lineHeight: "32px",
+            fontSize: {
+              xs: "12px",
+              sm: "14px",
+            },
+            lineHeight: {
+              xs: "26px",
+              sm: "32px",
+            },
             textAlign: "right",
             color: "#4C4C4D",
           }}
@@ -153,9 +211,17 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
 
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(2, minmax(0, 1fr))",
+            sm: "repeat(4, minmax(0, 1fr))",
+          },
+          gap: {
+            xs: "12px",
+            sm: "14px",
+            md: "16px",
+          },
+          width: "100%",
         }}
       >
         {INCLUDED_ITEMS.map(({ id, label, iconSrc }) => (
@@ -163,13 +229,19 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
             key={id}
             sx={{
               boxSizing: "border-box",
+              width: "100%",
+              height: {
+                xs: "105px",
+                sm: "116px",
+              },
+              padding: {
+                xs: "10px",
+                sm: "15px",
+              },
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              width: "116px",
-              height: "116px",
-              padding: "15px",
               backgroundColor: "#FCFDFD",
               border: "1px solid #EEF3F7",
               borderRadius: "12px",
@@ -182,14 +254,32 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
               alt=""
               width={52}
               height={52}
+              style={{
+                width: "52px",
+                height: "52px",
+                maxWidth: "100%",
+                objectFit: "contain",
+              }}
             />
 
             <Typography
               sx={{
+                mt: {
+                  xs: "2px",
+                  sm: 0,
+                },
                 fontFamily: FONT_FAMILY,
                 fontWeight: 600,
-                fontSize: "14px",
-                lineHeight: "32px",
+                fontSize: {
+                  xs: "11px",
+                  sm: "13px",
+                  md: "14px",
+                },
+                lineHeight: {
+                  xs: "24px",
+                  sm: "30px",
+                  md: "32px",
+                },
                 textAlign: "center",
                 whiteSpace: "nowrap",
                 color: "#4C4C4D",
@@ -201,22 +291,52 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
         ))}
       </Box>
 
-      <Box sx={{ height: 0, borderTop: DASHED_LINE }} />
+      <Box
+        sx={{
+          height: 0,
+          borderTop: DASHED_LINE,
+          width: "100%",
+        }}
+      />
 
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
+          justifyContent: {
+            xs: "center",
+            sm: "space-between",
+          },
+          alignItems: {
+            xs: "stretch",
+            sm: "center",
+          },
+          gap: {
+            xs: "16px",
+            sm: 0,
+          },
+          width: "100%",
         }}
       >
         <Typography
           sx={{
             fontFamily: FONT_FAMILY,
             fontWeight: 800,
-            fontSize: "16px",
-            lineHeight: "29px",
-            textAlign: "right",
+            fontSize: {
+              xs: "14px",
+              sm: "16px",
+            },
+            lineHeight: {
+              xs: "28px",
+              sm: "29px",
+            },
+            textAlign: {
+              xs: "center",
+              sm: "right",
+            },
             color: "#43A047",
           }}
         >
@@ -233,7 +353,14 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
           <Button
             disableRipple
             sx={{
-              width: "178px",
+              width: {
+                xs: "100%",
+                sm: "178px",
+              },
+              minWidth: {
+                xs: "100%",
+                sm: "178px",
+              },
               height: "46px",
               padding: "6px 11px",
               borderRadius: "999px",
@@ -256,7 +383,7 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
           >
             <Box
               sx={{
-                width: "156px",
+                width: "100%",
                 height: "34px",
                 display: "flex",
                 flexDirection: "row-reverse",
@@ -293,11 +420,15 @@ const SpecialText = ({ bookingHref = "#" }: SpecialTextProps) => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  width: "106px",
+                  flex: 1,
+                  minWidth: 0,
                   height: "25px",
                   fontFamily: FONT_FAMILY,
                   fontWeight: 800,
-                  fontSize: "14px",
+                  fontSize: {
+                    xs: "12px",
+                    sm: "14px",
+                  },
                   lineHeight: "25px",
                   whiteSpace: "nowrap",
                   color: "#FFFFFF",
